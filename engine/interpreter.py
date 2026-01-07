@@ -1,3 +1,4 @@
+from engine.commands.view import view_path
 class Interpreter:
     def run(self,lines):
         for index,line in enumerate(lines,start=1):
@@ -22,6 +23,6 @@ class Interpreter:
         if not path:
             print(f"[Error] on line {line_number}: No path specified in @view command")
             return
-        print(f"[Info] on line {line_number}: Viewing path '{path}'")
+        view_path(path,line_number)
         
             

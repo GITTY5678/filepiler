@@ -1,1 +1,1 @@
-@view -> .
+@view -> C:\learning\coursera
