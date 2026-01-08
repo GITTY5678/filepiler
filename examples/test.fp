@@ -1,1 +1,1 @@
-@view -> C:\learning
+@create -> .$hello.py

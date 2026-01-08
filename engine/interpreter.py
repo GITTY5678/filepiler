@@ -39,6 +39,7 @@ class Interpreter:
         if not dir_path or not file_name:
             print(f"[Error] Line {line_number}: Invalid @create syntax: directory path or file_name missing")
             return
+        create_path(dir_path,file_name,line_number)
         
             
     
