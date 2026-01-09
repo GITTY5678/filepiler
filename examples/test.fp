@@ -1,1 +1,1 @@
-@create -> .$hello.py
+@delete -> C:\New folder (3)

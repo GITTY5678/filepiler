@@ -9,7 +9,6 @@ def create_path(dir_path,file_name,line_number):
             pass
         print("[CREATE] Created file at:",full_path)
     except PermissionError:
-        print("Error] on line {}: Permission denied to create file at '{}'".format(line_number,full_path))
+        print("[Error] on line {}: Permission denied to create file at '{}'".format(line_number,full_path))
     except FileNotFoundError:
         print("[Error] on line {}: Directory '{}' does not exist".format(line_number,dir_path))
-        

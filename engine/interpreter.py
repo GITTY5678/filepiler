@@ -1,6 +1,7 @@
 from engine.commands.view import view_path
 from engine.commands.create import create_path
-
+from engine.commands.delete import delete_path
+import os
 class Interpreter:
     def run(self,lines):
         for index,line in enumerate(lines,start=1):
@@ -16,6 +17,10 @@ class Interpreter:
             self.handle_view(line,line_number)
         elif line.startswith("@create"):
             self.handle_create(line,line_number)
+        elif line.startswith("@syntax"):
+            self.handle_syntax()
+        elif line.startswith("@delete"):
+            self.handle_delete(line,line_number)
         else:
             print(f"[Error] on line {line_number}: Unknown command '{line.split()[0]}'")
     def handle_view(self,line,line_number):
@@ -40,8 +45,23 @@ class Interpreter:
             print(f"[Error] Line {line_number}: Invalid @create syntax: directory path or file_name missing")
             return
         create_path(dir_path,file_name,line_number)
+    def handle_syntax(self):
+        with open("C:\\Users\\HARIHARA SUTHAN\\Documents\\GitHub\\filepiler\\docs\\syntax.txt","r") as syntax_file:
+            syntax_content=syntax_file.read()
+            print(syntax_content)
+        return
+    def handle_delete(self,line,line_number):
+        if "->" not in line:
+            print(f"[Error] Line {line_number}: Invalid @delete syntax: missing '->'")
+            return
+        _,del_line=line.split("->",1)
+        del_line=del_line.strip()
         
-            
+        if not del_line:
+            print(f"[ERROR] on line {line_number}: No path specified in @delete command")
+        delete_path(del_line,line_number)
+        
+        
+        
+        
     
-        
-            
