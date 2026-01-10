@@ -1,6 +1,7 @@
 from engine.commands.view import view_path
 from engine.commands.create import create_path
 from engine.commands.delete import delete_path
+from engine.commands.find import find_path
 import os
 class Interpreter:
     def run(self,lines):
@@ -21,6 +22,8 @@ class Interpreter:
             self.handle_syntax()
         elif line.startswith("@delete"):
             self.handle_delete(line,line_number)
+        elif line.startswith("@find"):
+            self.handle_finder(line,line_number)
         else:
             print(f"[Error] on line {line_number}: Unknown command '{line.split()[0]}'")
     def handle_view(self,line,line_number):
@@ -60,6 +63,19 @@ class Interpreter:
         if not del_line:
             print(f"[ERROR] on line {line_number}: No path specified in @delete command")
         delete_path(del_line,line_number)
+    def handle_finder(self,line,line_number):
+        if "$" not in line or "->" not in line:
+            print(f"[Error] Line {line_number}: Invalid @find syntax: missing '$' or '->'")
+            return
+        _,find_comm=line.split("->",1)
+        app_path,search_path=find_comm.split("$",1)
+        app_path=app_path.strip()
+        search_path=search_path.strip()
+        if not app_path or not search_path:
+            print("[fError] Line {line_number}: Invalid @find syntax: application path or search path missing")
+            return
+        find_path(app_path,search_path)
+
         
         
         
