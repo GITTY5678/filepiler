@@ -1,6 +1,8 @@
 import os
 def find_path(app_path,search_path):
     found=False
+    #if not path.startswith("C:/") and not path.startswith("D:/") and not path.startswith("E:/"):
+     #   app_path=""
     try:
         for root,dirs,files in os.walk(app_path):
             for d in dirs:
