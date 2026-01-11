@@ -1,1 +1,1 @@
-@find -> C:\Users\HARIHARA SUTHAN\Documents$filepiler
+@find -> C:\Users$filepiler
