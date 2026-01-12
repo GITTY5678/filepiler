@@ -3,6 +3,7 @@ from engine.commands.create import create_path
 from engine.commands.delete import delete_path
 from engine.commands.find import find_path
 from engine.commands.info import display_info
+from engine.commands.memory_sort import memory_sort
 import os
 class Interpreter:
     def run(self,lines):
@@ -27,6 +28,8 @@ class Interpreter:
             self.handle_finder(line,line_number)
         elif line.startswith("@info"):
             self.handle_info(line,line_number)
+        elif line.startswith("@memory_sort"):
+            self.handle_memory(line,line_number)
         else:
             print(f"[Error] on line {line_number}: Unknown command '{line.split()[0]}'")
     def handle_view(self,line,line_number):
@@ -88,6 +91,21 @@ class Interpreter:
             print(f"[ERROR] on line {line_number}: No path specified in @info command")
             return
         display_info(path_line,line_number)
+    def handle_memory(self,line,line_number):
+        if "->" and "$" not in line:
+            print(f"[Error] Line {line_number}: Invalid @memory_sort syntax: missing '$' or '->'")
+            return
+        _,mem_line=line.split("->",1)
+        mem_line=mem_line.strip()
+        app_path,sort_comm=mem_line.split("$",1)
+        app_path=app_path.strip()
+        sort_comm=sort_comm.strip()
+        if not app_path or not sort_comm:
+            print(f"[Error] Line {line_number}: Invalid @memory_sort syntax: application path or sort command missing")
+            return
+        memory_sort(app_path,sort_comm,line_number)
+        
+        
         
         
         
