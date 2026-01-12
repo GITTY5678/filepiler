@@ -1,1 +1,1 @@
-@find -> C:\Users$filepiler
+@info -> C:\Users\HARIHARA SUTHAN\Documents\GitHub
