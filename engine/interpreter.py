@@ -112,11 +112,21 @@ class Interpreter:
             print(f"[Error] on line {line_number}: Missing '->' in @watch command")
             return
         _,path=line.split("->",1)
+        
+        recursive=False
+
+        if "$" in path:
+            path,flag=path.split("$",1)
+            if flag.strip()=="r":
+                recursive=True
+            else:
+                print(f"[Error] Line {line_number}: Unknown @watch flag '{flag}'")
+                return
         path=path.strip()
         if not path:
             print(f"[Error] on line {line_number}: No path specified in @watch command")
             return
-        watch_path(path,line_number)
+        watch_path(path,line_number,recursive)
         
         
         
